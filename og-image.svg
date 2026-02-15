@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.04"/>
+      </feComponentTransfer>
+    </filter>
+    <linearGradient id="glow" x1="50%" y1="30%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#c4f042" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#08080a" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="line-fade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4a4740" stop-opacity="0"/>
+      <stop offset="20%" stop-color="#4a4740" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#4a4740" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#4a4740" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#08080a"/>
+
+  <!-- Subtle center glow -->
+  <ellipse cx="600" cy="280" rx="500" ry="300" fill="url(#glow)"/>
+
+  <!-- Grain overlay -->
+  <rect width="1200" height="630" filter="url(#noise)" opacity="0.5"/>
+
+  <!-- Top border line -->
+  <rect x="60" y="50" width="1080" height="1" fill="#2a2a2e"/>
+
+  <!-- File stamp -->
+  <rect x="60" y="70" width="200" height="32" rx="2" fill="none" stroke="#EF4C31" stroke-width="2" transform="rotate(-2, 160, 86)"/>
+  <text x="160" y="91" text-anchor="middle" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="700" font-size="11" letter-spacing="3" fill="#EF4C31" text-transform="uppercase" transform="rotate(-2, 160, 86)">THIS IS MY ACTUAL DATA</text>
+
+  <!-- Section eyebrow -->
+  <line x1="60" y1="148" x2="84" y2="148" stroke="#4a4740" stroke-width="1"/>
+  <text x="94" y="152" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="700" font-size="12" letter-spacing="3" fill="#7a7770">YOUR LINKEDIN FILE</text>
+
+  <!-- Main headline -->
+  <text x="60" y="225" font-family="'Instrument Serif', Georgia, serif" font-style="italic" font-size="72" fill="#e8e4dc">What LinkedIn</text>
+  <text x="60" y="310" font-family="'Instrument Serif', Georgia, serif" font-style="italic" font-size="72" fill="#c4f042">Actually</text>
+  <text x="340" y="310" font-family="'Instrument Serif', Georgia, serif" font-style="italic" font-size="72" fill="#e8e4dc"> Keeps on You</text>
+
+  <!-- Divider line -->
+  <rect x="60" y="345" width="1080" height="1" fill="url(#line-fade)"/>
+
+  <!-- Stats row -->
+  <text x="60" y="395" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="800" font-size="36" fill="#c4f042">43</text>
+  <text x="105" y="395" font-family="'DM Mono', 'Courier New', monospace" font-size="13" fill="#7a7770"> files tracked</text>
+
+  <text x="310" y="395" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="800" font-size="36" fill="#c4f042">12,468</text>
+  <text x="430" y="395" font-family="'DM Mono', 'Courier New', monospace" font-size="13" fill="#7a7770"> messages stored</text>
+
+  <text x="650" y="395" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="800" font-size="36" fill="#c4f042">400+</text>
+  <text x="740" y="395" font-family="'DM Mono', 'Courier New', monospace" font-size="13" fill="#7a7770"> ad targeting labels</text>
+
+  <!-- CSV file indicators - scattered like documents -->
+  <rect x="60" y="440" width="160" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="76" y="458" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">messages.csv</text>
+
+  <rect x="232" y="440" width="180" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="248" y="458" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">Ad_Targeting.csv</text>
+
+  <rect x="424" y="440" width="180" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="440" y="458" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">SearchQueries.csv</text>
+
+  <rect x="616" y="440" width="170" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="632" y="458" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">Connections.csv</text>
+
+  <rect x="798" y="440" width="120" height="28" rx="4" fill="#16161a" stroke="#EF4C31" stroke-width="1"/>
+  <text x="814" y="458" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#EF4C31">Logins.csv</text>
+
+  <rect x="930" y="440" width="210" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="946" y="458" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">Inferences_about_you.csv</text>
+
+  <!-- Second row of files -->
+  <rect x="60" y="476" width="150" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="76" y="494" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">Reactions.csv</text>
+
+  <rect x="222" y="476" width="130" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="238" y="494" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">Comments.csv</text>
+
+  <rect x="364" y="476" width="110" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="380" y="494" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">Shares.csv</text>
+
+  <rect x="486" y="476" width="110" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="502" y="494" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">Skills.csv</text>
+
+  <rect x="608" y="476" width="140" height="28" rx="4" fill="#16161a" stroke="#2a2a2e" stroke-width="1"/>
+  <text x="624" y="494" font-family="'DM Mono', 'Courier New', monospace" font-size="11" fill="#7a7770">Invitations.csv</text>
+
+  <text x="770" y="494" font-family="'DM Mono', 'Courier New', monospace" font-size="12" fill="#4a4740">+ 30 more files...</text>
+
+  <!-- Bottom border -->
+  <rect x="60" y="545" width="1080" height="1" fill="#2a2a2e"/>
+
+  <!-- Bottom text -->
+  <text x="60" y="580" font-family="'DM Mono', 'Courier New', monospace" font-size="13" fill="#7a7770">I downloaded my LinkedIn archive. Here's what was in it.</text>
+  <text x="1140" y="580" text-anchor="end" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="700" font-size="12" letter-spacing="2" fill="#4a4740">QUEEN OF SWORDS</text>
+</svg>

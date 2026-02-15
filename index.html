@@ -1,0 +1,2242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR LINKEDIN FILE — What They Actually Track</title>
+<meta name="description" content="A breakdown of the 40+ files LinkedIn stores about you. Download your archive and see for yourself.">
+<meta property="og:title" content="What LinkedIn Actually Keeps on You">
+<meta property="og:description" content="I downloaded my LinkedIn archive. 43 files. 38,000+ rows. Here's what was in it.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What LinkedIn Actually Keeps on You">
+<meta name="twitter:description" content="I downloaded my LinkedIn archive. 43 files. 38,000+ rows. Here's what was in it.">
+<meta name="twitter:image" content="og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Barlow+Condensed:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #08080a;
+  --bg-elevated: #111114;
+  --bg-card: #16161a;
+  --text: #e8e4dc;
+  --text-muted: #7a7770;
+  --text-dim: #4a4740;
+  --acid: #c4f042;
+  --acid-dim: rgba(196, 240, 66, 0.15);
+  --red: #EF4C31;
+  --red-dim: rgba(239, 76, 49, 0.12);
+  --amber: #ffb020;
+  --amber-dim: rgba(255, 176, 32, 0.12);
+  --blue: #549BA0;
+  --border: #2a2a2e;
+  --mono: 'DM Mono', monospace;
+  --display: 'Barlow Condensed', sans-serif;
+  --serif: 'Instrument Serif', serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay — adds materiality to the dark bg so it feels like paper not a screen */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+}
+
+::selection {
+  background: var(--acid);
+  color: var(--bg);
+}
+
+a { color: var(--text); text-decoration: underline; text-decoration-color: var(--text-dim); text-underline-offset: 3px; }
+a:hover { color: var(--acid); text-decoration-color: var(--acid); }
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(8, 8, 10, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+}
+.nav.visible { transform: translateY(0); }
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+}
+.nav-label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.nav-links a {
+  text-decoration: none;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+  text-decoration: none;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse, rgba(196,240,66,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.file-stamp {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  border: 2px solid var(--red);
+  padding: 0.4rem 1.2rem;
+  display: inline-block;
+  margin-bottom: 3rem;
+  transform: rotate(-2deg);
+  opacity: 0;
+  animation: stampIn 0.6s ease 0.5s forwards;
+}
+@keyframes stampIn {
+  0% { opacity: 0; transform: rotate(-2deg) scale(2); }
+  60% { opacity: 1; transform: rotate(-2deg) scale(0.95); }
+  100% { opacity: 1; transform: rotate(-2deg) scale(1); }
+}
+
+.hero-pre {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.8s forwards;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 1.05;
+  max-width: 900px;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1s forwards;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--acid);
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 580px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.2s forwards;
+}
+.hero-sub strong { color: var(--text); font-weight: 700; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.8s forwards;
+}
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--text-dim), transparent);
+  margin: 0.8rem auto 0;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 2rem;
+  background: var(--bg-elevated);
+}
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+.stat {
+  text-align: center;
+}
+.stat-number {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 2.8rem;
+  color: var(--acid);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ===== SECTION LAYOUT ===== */
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 6rem 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+.section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-eyebrow {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--text-dim);
+}
+
+.section h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 2.5rem;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.section-intro {
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+/* ===== FILE CARDS ===== */
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.file-card {
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.file-card:hover { background: #1a1a1f; }
+
+.file-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  gap: 1rem;
+}
+.file-name {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 1;
+}
+.file-icon {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.file-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+.file-rows {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+.file-tag {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.file-tag.red { color: var(--red); background: var(--red-dim); }
+.file-tag.amber { color: var(--amber); background: var(--amber-dim); }
+.file-tag.acid { color: var(--acid); background: var(--acid-dim); }
+
+.file-expand {
+  color: var(--text-dim);
+  transition: transform 0.3s;
+  font-size: 16px;
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+}
+.file-card.open .file-expand { transform: rotate(45deg); }
+
+.file-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.file-card.open .file-detail {
+  max-height: 500px;
+}
+.file-detail-inner {
+  padding: 0 1.25rem 1.25rem 1.25rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+.file-detail p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.file-detail .highlight {
+  color: var(--text);
+  background: var(--red-dim);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.file-detail .sample {
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--text-dim);
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.6;
+  border-left: 2px solid var(--border);
+}
+
+/* ===== CALLOUT ===== */
+.callout {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 2.5rem 0;
+}
+.callout-label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.6rem;
+}
+.callout p {
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-size: 13px;
+}
+.callout p strong { color: var(--text); }
+.callout.acid-callout { border-left-color: var(--acid); }
+.callout.acid-callout .callout-label { color: var(--acid); }
+
+/* ===== EMOTIONAL PROFILE ===== */
+.emotion-profile {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-card);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+.emotion-profile-label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+.emotion-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.emotion-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.emotion-type {
+  font-size: 12px;
+  font-weight: 700;
+  width: 120px;
+  flex-shrink: 0;
+  text-align: right;
+}
+.emotion-bar-track {
+  flex: 1;
+  height: 24px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.emotion-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  width: 0;
+  transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.emotion-bar-fill.praise { background: var(--acid); }
+.emotion-bar-fill.like { background: var(--text-muted); }
+.emotion-bar-fill.empathy { background: #FE63D9; }
+.emotion-bar-fill.entertainment { background: var(--amber); }
+.emotion-bar-fill.interest { background: var(--blue); }
+.emotion-bar-fill.appreciation { background: var(--red); }
+.emotion-count {
+  font-size: 11px;
+  color: var(--text-dim);
+  width: 45px;
+  flex-shrink: 0;
+}
+.emotion-timeline {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+.emotion-timeline-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+}
+.timeline-row {
+  display: flex;
+  gap: 2px;
+  height: 32px;
+  margin-bottom: 4px;
+  align-items: center;
+}
+.timeline-year {
+  font-size: 10px;
+  color: var(--text-dim);
+  width: 36px;
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: 6px;
+}
+.timeline-blocks {
+  flex: 1;
+  display: flex;
+  gap: 1px;
+  height: 100%;
+  align-items: flex-end;
+}
+.timeline-block {
+  height: 100%;
+  border-radius: 2px;
+  min-width: 2px;
+  transition: width 1s ease;
+}
+.timeline-block.praise { background: var(--acid); opacity: 0.85; }
+.timeline-block.like { background: var(--text-muted); opacity: 0.5; }
+.timeline-block.empathy { background: #FE63D9; opacity: 0.75; }
+.timeline-block.entertainment { background: var(--amber); opacity: 0.7; }
+.timeline-block.interest { background: var(--blue); opacity: 0.7; }
+.timeline-block.appreciation { background: var(--red); opacity: 0.7; }
+.timeline-legend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.6rem;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 10px;
+  color: var(--text-dim);
+}
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+/* ===== NETWORK PROFILE ===== */
+.network-profile {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-card);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+.network-profile-label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+.network-growth {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 120px;
+  margin-bottom: 0.4rem;
+}
+.network-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+.network-bar {
+  width: 100%;
+  background: var(--acid);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.7;
+  transition: opacity 0.2s, height 1s cubic-bezier(0.22, 1, 0.36, 1);
+  height: 0;
+}
+.network-bar:hover { opacity: 1; }
+.network-bar-year {
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-top: 4px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: 28px;
+}
+.network-bar-count {
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.network-bar-col:hover .network-bar-count { opacity: 1; }
+
+.network-roles {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+.network-roles-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+}
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.role-item {
+  background: var(--bg-card);
+  padding: 0.7rem 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.role-title {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.role-count {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--acid);
+}
+
+/* ===== TAG WALL (Ad Targeting) ===== */
+.tag-wall {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 1.5rem 0;
+  max-height: 320px;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.5s ease;
+}
+.tag-wall.expanded {
+  max-height: none;
+}
+.tag-wall::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.tag-wall.expanded::after { opacity: 0; }
+
+.tag {
+  font-size: 11px;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  cursor: default;
+}
+.tag:hover {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+.tag.weird {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-dim);
+}
+
+.show-all-btn {
+  display: block;
+  margin: 1rem auto;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.show-all-btn:hover {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ===== FORMAT COMPARISON ===== */
+.format-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+.format-item {
+  background: var(--bg-card);
+  padding: 1rem;
+}
+.format-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.4rem;
+}
+.format-value {
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* ===== CTA ===== */
+.cta {
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+}
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 600px;
+  height: 400px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(196,240,66,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+.cta p {
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+}
+.cta-button {
+  display: inline-block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--acid);
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+  text-decoration: none !important;
+}
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(196,240,66,0.25);
+  text-decoration: none;
+}
+
+.cta-steps {
+  max-width: 480px;
+  margin: 3rem auto 0;
+  text-align: left;
+}
+.cta-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.cta-step-num {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--acid);
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--acid);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.cta-step p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: left;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ===== NEW BADGE ===== */
+.new-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--amber);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+/* ===== CONTEXT / NEWS CARDS ===== */
+.news-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.news-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-card);
+  overflow: hidden;
+}
+.news-card-header {
+  padding: 1.25rem 1.5rem 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.news-card-date {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+.news-card h3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.25;
+  color: var(--text);
+}
+.news-card-body {
+  padding: 0 1.5rem 1.25rem;
+}
+.news-card-body p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+.news-card-body p strong { color: var(--text); }
+.news-card-receipt {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: rgba(0,0,0,0.3);
+  border-radius: 4px;
+  border-left: 2px solid var(--red);
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.news-card-receipt strong { color: var(--red); }
+.news-card-sources {
+  padding: 0 1.5rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.news-card-sources a {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.news-card-sources a:hover {
+  color: var(--acid);
+  border-color: var(--acid);
+  text-decoration: none;
+}
+.news-card-number {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== COUNTER ANIMATION ===== */
+.counter {
+  display: inline-block;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .hero h1 { font-size: 2.5rem; }
+  .section h2 { font-size: 1.8rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .stat-number { font-size: 2rem; }
+  .format-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .file-header { flex-wrap: wrap; }
+  .file-meta { width: 100%; justify-content: flex-end; }
+  .cta h2 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="nav-label">Your LinkedIn File</div>
+    <ul class="nav-links">
+      <li><a href="#identity">Identity</a></li>
+      <li><a href="#social">Social Graph</a></li>
+      <li><a href="#activity">Activity</a></li>
+      <li><a href="#targeting">Ad Targeting</a></li>
+      <li><a href="#behavior">Behavior</a></li>
+      <li><a href="#messy">The Mess</a></li>
+      <li><a href="#context">Why Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="file-stamp">This is my actual data</div>
+  <p class="hero-pre">I downloaded my LinkedIn archive. Here's what was in it.</p>
+  <h1>What LinkedIn <em>Actually</em> Keeps on You</h1>
+  <p class="hero-sub">
+    My name is Jenny. I work in creative strategy and AI consulting.
+    I downloaded my LinkedIn data archive on February 10, 2026.
+    It contained <strong>40+ files</strong> and <strong>38,000+ rows of data</strong>
+    — tracking everything from my DMs to my search history to whether I'm
+    an "active contributor who influences public opinion."
+    <strong>Here's what's inside. And what it means.</strong>
+  </p>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-number"><span class="counter" data-target="43">0</span></div>
+      <div class="stat-label">Files in the archive</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number"><span class="counter" data-target="12468">0</span></div>
+      <div class="stat-label">Messages stored</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number"><span class="counter" data-target="400">0</span>+</div>
+      <div class="stat-label">Ad targeting labels</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number"><span class="counter" data-target="19">0</span></div>
+      <div class="stat-label">Years of data tracked</div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ============================== -->
+  <!-- SECTION: IDENTITY -->
+  <!-- ============================== -->
+  <section class="section" id="identity">
+    <div class="section-eyebrow">01 — Identity &amp; Profile</div>
+    <h2>Everything that makes you, you</h2>
+    <p class="section-intro">
+      The basics: your name, your face, your work history, your skills.
+      Standard stuff — until you notice they also keep your zip code,
+      your Twitter handle, and your phone numbers in separate files.
+    </p>
+
+    <div class="file-list">
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Profile.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">1 row</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Your name, headline, summary, industry, zip code, geo location, Twitter handles, websites, and instant messenger IDs. All in one row.</p>
+            <div class="sample">First Name, Last Name, Maiden Name, Address, Birth Date,
+Headline, Summary, Industry, Zip Code, Geo Location,
+Twitter Handles, Websites, Instant Messengers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Positions.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">~10 rows</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Your complete employment history — company name, title, description, location, and start/end dates. Every role you've ever listed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Email Addresses.csv</span>
+          <div class="file-meta">
+            <span class="file-tag amber">Stored separately</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every email address you've ever associated with your account, kept in its own dedicated file.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> PhoneNumbers.csv</span>
+          <div class="file-meta">
+            <span class="file-tag amber">Stored separately</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Your phone numbers — also in their own file, separate from your profile.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Education.csv &nbsp;/&nbsp; Skills.csv &nbsp;/&nbsp; Registration.csv</span>
+          <div class="file-meta"></div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Your schools, self-listed skills, and the date you first registered. Skills includes things you added years ago and forgot about.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout acid-callout">
+      <div class="callout-label">What this enables</div>
+      <p>
+        Individually, these files are benign. Combined, they're a <strong>complete identity profile</strong>.
+        Full name + zip code + phone number + email + employment history is everything
+        needed for <strong>targeted phishing, impersonation, or social engineering</strong>.
+        In a data breach, this isn't just an email and password — it's <em>you</em>.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============================== -->
+  <!-- SECTION: SOCIAL GRAPH -->
+  <!-- ============================== -->
+  <section class="section" id="social">
+    <div class="section-eyebrow">02 — Your Social Graph</div>
+    <h2>Everyone you know, and how</h2>
+    <p class="section-intro">
+      Not just your connections — everyone you follow, every company you follow,
+      every hashtag you follow, and the contacts you imported from your phone or email.
+    </p>
+
+    <div class="file-list">
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Connections.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">~2,665 rows</span>
+            <span class="file-tag acid">Big</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every connection: <span class="highlight">name, profile URL, email address, company, position, and exact date connected</span>.</p>
+            <div class="sample">Notes:
+"When exporting your connection data, you may notice
+that some of the email addresses are missing..."
+
+First Name, Last Name, URL, Email Address, Company,
+Position, Connected On</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> ImportedContacts.csv</span>
+          <div class="file-meta">
+            <span class="file-tag red">From your phone</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Remember when LinkedIn asked to "find people you know"? These are the contacts you uploaded from your phone or email. <strong>They kept them.</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Invitations.csv &nbsp;/&nbsp; Member_Follows.csv &nbsp;/&nbsp; Company Follows.csv &nbsp;/&nbsp; Hashtag_Follows.csv</span>
+          <div class="file-meta"></div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every invitation (with your personal message), plus three separate files for three types of follows — people, companies, and hashtags. Each tracked individually.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="network-profile" id="networkProfile">
+      <div class="network-profile-label">My network — 2,664 connections mapped over time</div>
+      <div class="network-growth">
+        <div class="network-bar-col"><span class="network-bar-count">57</span><div class="network-bar" data-h="14"></div><span class="network-bar-year">'07</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">13</span><div class="network-bar" data-h="3"></div><span class="network-bar-year">'08</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">26</span><div class="network-bar" data-h="7"></div><span class="network-bar-year">'10</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">55</span><div class="network-bar" data-h="14"></div><span class="network-bar-year">'11</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">57</span><div class="network-bar" data-h="14"></div><span class="network-bar-year">'12</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">61</span><div class="network-bar" data-h="15"></div><span class="network-bar-year">'13</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">39</span><div class="network-bar" data-h="10"></div><span class="network-bar-year">'14</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">48</span><div class="network-bar" data-h="12"></div><span class="network-bar-year">'15</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">76</span><div class="network-bar" data-h="19"></div><span class="network-bar-year">'16</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">140</span><div class="network-bar" data-h="35"></div><span class="network-bar-year">'17</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">118</span><div class="network-bar" data-h="30"></div><span class="network-bar-year">'18</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">66</span><div class="network-bar" data-h="17"></div><span class="network-bar-year">'19</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">88</span><div class="network-bar" data-h="22"></div><span class="network-bar-year">'20</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">96</span><div class="network-bar" data-h="24"></div><span class="network-bar-year">'21</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">160</span><div class="network-bar" data-h="40"></div><span class="network-bar-year">'22</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">396</span><div class="network-bar" data-h="100" style="background: var(--red); opacity: 0.85"></div><span class="network-bar-year">'23</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">373</span><div class="network-bar" data-h="94" style="background: var(--red); opacity: 0.85"></div><span class="network-bar-year">'24</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">138</span><div class="network-bar" data-h="35"></div><span class="network-bar-year">'25</span></div>
+        <div class="network-bar-col"><span class="network-bar-count">25</span><div class="network-bar" data-h="6"></div><span class="network-bar-year">'26</span></div>
+      </div>
+
+      <div class="network-roles">
+        <div class="network-roles-label">What LinkedIn knows about my network by role</div>
+        <div class="role-grid">
+          <div class="role-item"><span class="role-title">Directors</span><span class="role-count">422</span></div>
+          <div class="role-item"><span class="role-title">Founders</span><span class="role-count">331</span></div>
+          <div class="role-item"><span class="role-title">Creative Directors</span><span class="role-count">310</span></div>
+          <div class="role-item"><span class="role-title">C-Suite</span><span class="role-count">210</span></div>
+          <div class="role-item"><span class="role-title">Managers</span><span class="role-count">149</span></div>
+          <div class="role-item"><span class="role-title">Partners</span><span class="role-count">99</span></div>
+          <div class="role-item"><span class="role-title">Heads of...</span><span class="role-count">93</span></div>
+          <div class="role-item"><span class="role-title">CEOs</span><span class="role-count">92</span></div>
+          <div class="role-item"><span class="role-title">Freelancers</span><span class="role-count">90</span></div>
+          <div class="role-item"><span class="role-title">Consultants</span><span class="role-count">69</span></div>
+          <div class="role-item"><span class="role-title">VPs</span><span class="role-count">63</span></div>
+          <div class="role-item"><span class="role-title">Producers</span><span class="role-count">57</span></div>
+          <div class="role-item"><span class="role-title">Designers</span><span class="role-count">52</span></div>
+          <div class="role-item"><span class="role-title">Copywriters</span><span class="role-count">51</span></div>
+          <div class="role-item"><span class="role-title">Strategists</span><span class="role-count">49</span></div>
+          <div class="role-item"><span class="role-title">Owners</span><span class="role-count">49</span></div>
+        </div>
+      </div>
+
+      <p style="font-size: 12px; color: var(--text-dim); margin-top: 1rem; line-height: 1.7;">
+        Without revealing a single name, this data paints a clear picture: senior creative industry,
+        heavy founder/C-suite network, big spike in 2023–2024 (career transition visible from space).
+        LinkedIn knows your seniority level, your industry, your career trajectory, and
+        <strong style="color: var(--text);">exactly when your professional life changed</strong> — all from connection metadata.
+      </p>
+    </div>
+
+    <div class="callout acid-callout">
+      <div class="callout-label">What this enables</div>
+      <p>
+        Your social graph is a <strong>relationship map</strong>. It reveals who you trust,
+        who you work with, and who influences you. Recruiters pay LinkedIn to see this.
+        Advertisers use it for lookalike targeting. And if this data leaks, it's a
+        <strong>roadmap for spear-phishing</strong> — "Hey, your colleague Sarah mentioned
+        you'd be interested in this..." LinkedIn also keeps the contacts you imported
+        from your phone years ago, including people <strong>who never signed up for LinkedIn</strong>.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============================== -->
+  <!-- SECTION: ACTIVITY -->
+  <!-- ============================== -->
+  <section class="section" id="activity">
+    <div class="section-eyebrow">03 — Everything You've Ever Said or Done</div>
+    <h2>A complete record of your activity</h2>
+    <p class="section-intro">
+      Every message. Every comment. Every post. Every reaction.
+      Going back years. Over 27,000 rows of your words and actions.
+    </p>
+
+    <div class="file-list">
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> messages.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">12,468 rows</span>
+            <span class="file-tag red">Largest file</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p><span class="highlight">Every DM you've ever sent or received.</span> Full message content, timestamps, conversation IDs, sender/recipient profile URLs, folder location, attachments, and whether it was a draft. Twelve thousand messages.</p>
+            <div class="sample">CONVERSATION ID, CONVERSATION TITLE, FROM,
+SENDER PROFILE URL, TO, RECIPIENT PROFILE URLS,
+DATE, SUBJECT, CONTENT, FOLDER, ATTACHMENTS,
+IS MESSAGE DRAFT</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Comments.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">7,420 rows</span>
+            <span class="file-tag acid">Big</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every comment you've left on any post, with the date, a link to the post, and the full text of your comment.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Shares.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">4,707 rows</span>
+            <span class="file-tag acid">Big</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every post you've shared — date, link, your full commentary text, any shared URL, media URL, and visibility setting.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Reactions.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">2,576 rows</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every reaction, categorized by type. Not just "like" — LinkedIn separately tracks <span class="highlight">LIKE, EMPATHY, PRAISE, ENTERTAINMENT, and APPRECIATION</span>. Each is a data point about your emotional response to content.</p>
+            <div class="sample">Date, Type, Link
+2026-02-09, EMPATHY, https://linkedin.com/feed/...
+2026-02-08, APPRECIATION, https://linkedin.com/feed/...
+2026-02-08, PRAISE, https://linkedin.com/feed/...
+2026-02-05, ENTERTAINMENT, https://linkedin.com/feed/...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> SearchQueries.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">8,225 rows</span>
+            <span class="file-tag red">Years of data</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every search query, timestamped, going back years. The same search often appears <span class="highlight">2–4 times with identical timestamps</span>, suggesting LinkedIn logs each filter interaction as a separate event. Searching job titles? LinkedIn uses that to infer you're job hunting — and sells that signal to recruiters.</p>
+            <div class="sample">Time, Search Query
+2024/02/01 19:09:27 UTC, creative strategist
+2024/02/01 19:09:27 UTC, creative strategist
+2024/02/01 19:09:27 UTC, head of customer experience
+2024/02/01 19:09:27 UTC, head of customer experience</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Votes.csv &nbsp;/&nbsp; InstantReposts.csv &nbsp;/&nbsp; Saved_Items.csv &nbsp;/&nbsp; Events.csv</span>
+          <div class="file-meta"></div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Poll votes, reposts, saved items, and event interactions. Every micro-action, catalogued.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="emotion-profile" id="emotionProfile">
+      <div class="emotion-profile-label">My emotional profile — built from 2,575 reactions</div>
+      <div class="emotion-bars">
+        <div class="emotion-row">
+          <span class="emotion-type" style="color: var(--acid)">Praise</span>
+          <div class="emotion-bar-track"><div class="emotion-bar-fill praise" data-width="100"></div></div>
+          <span class="emotion-count">911</span>
+        </div>
+        <div class="emotion-row">
+          <span class="emotion-type" style="color: var(--text-muted)">Like</span>
+          <div class="emotion-bar-track"><div class="emotion-bar-fill like" data-width="93"></div></div>
+          <span class="emotion-count">849</span>
+        </div>
+        <div class="emotion-row">
+          <span class="emotion-type" style="color: #FE63D9">Empathy</span>
+          <div class="emotion-bar-track"><div class="emotion-bar-fill empathy" data-width="75"></div></div>
+          <span class="emotion-count">683</span>
+        </div>
+        <div class="emotion-row">
+          <span class="emotion-type" style="color: var(--amber)">Entertainment</span>
+          <div class="emotion-bar-track"><div class="emotion-bar-fill entertainment" data-width="10"></div></div>
+          <span class="emotion-count">89</span>
+        </div>
+        <div class="emotion-row">
+          <span class="emotion-type" style="color: var(--blue)">Interest</span>
+          <div class="emotion-bar-track"><div class="emotion-bar-fill interest" data-width="4"></div></div>
+          <span class="emotion-count">33</span>
+        </div>
+        <div class="emotion-row">
+          <span class="emotion-type" style="color: var(--red)">Appreciation</span>
+          <div class="emotion-bar-track"><div class="emotion-bar-fill appreciation" data-width="1"></div></div>
+          <span class="emotion-count">10</span>
+        </div>
+      </div>
+
+      <div class="emotion-timeline">
+        <div class="emotion-timeline-label">How my reactions changed over time</div>
+        <!-- Each row: proportional widths based on count, scaled to year's total -->
+        <div class="timeline-row">
+          <span class="timeline-year">2017</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block like" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-year">2018</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block like" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-year">2019</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block like" style="width: 93%"></div>
+            <div class="timeline-block empathy" style="width: 5%"></div>
+            <div class="timeline-block praise" style="width: 2%"></div>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-year">2020</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block like" style="width: 59%"></div>
+            <div class="timeline-block praise" style="width: 29%"></div>
+            <div class="timeline-block empathy" style="width: 11%"></div>
+            <div class="timeline-block appreciation" style="width: 1%"></div>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-year">2021</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block praise" style="width: 52%"></div>
+            <div class="timeline-block like" style="width: 39%"></div>
+            <div class="timeline-block empathy" style="width: 8%"></div>
+            <div class="timeline-block interest" style="width: 1%"></div>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-year">2022</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block praise" style="width: 66%"></div>
+            <div class="timeline-block empathy" style="width: 16%"></div>
+            <div class="timeline-block like" style="width: 16%"></div>
+            <div class="timeline-block interest" style="width: 1%"></div>
+            <div class="timeline-block entertainment" style="width: 1%"></div>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-year">2023</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block praise" style="width: 57%"></div>
+            <div class="timeline-block empathy" style="width: 29%"></div>
+            <div class="timeline-block like" style="width: 8%"></div>
+            <div class="timeline-block entertainment" style="width: 4%"></div>
+            <div class="timeline-block interest" style="width: 2%"></div>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-year">2024</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block empathy" style="width: 53%"></div>
+            <div class="timeline-block praise" style="width: 28%"></div>
+            <div class="timeline-block entertainment" style="width: 12%"></div>
+            <div class="timeline-block like" style="width: 4%"></div>
+            <div class="timeline-block interest" style="width: 2%"></div>
+            <div class="timeline-block appreciation" style="width: 1%"></div>
+          </div>
+        </div>
+        <div class="timeline-row">
+          <span class="timeline-year">2025</span>
+          <div class="timeline-blocks">
+            <div class="timeline-block empathy" style="width: 58%"></div>
+            <div class="timeline-block praise" style="width: 28%"></div>
+            <div class="timeline-block like" style="width: 7%"></div>
+            <div class="timeline-block entertainment" style="width: 3%"></div>
+            <div class="timeline-block interest" style="width: 2%"></div>
+            <div class="timeline-block appreciation" style="width: 2%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-legend">
+        <div class="legend-item"><div class="legend-dot" style="background: var(--text-muted); opacity: 0.5"></div> Like</div>
+        <div class="legend-item"><div class="legend-dot" style="background: var(--acid); opacity: 0.85"></div> Praise</div>
+        <div class="legend-item"><div class="legend-dot" style="background: #FE63D9; opacity: 0.75"></div> Empathy</div>
+        <div class="legend-item"><div class="legend-dot" style="background: var(--amber); opacity: 0.7"></div> Entertainment</div>
+        <div class="legend-item"><div class="legend-dot" style="background: var(--blue); opacity: 0.7"></div> Interest</div>
+        <div class="legend-item"><div class="legend-dot" style="background: var(--red); opacity: 0.7"></div> Appreciation</div>
+      </div>
+      <p style="font-size: 12px; color: var(--text-dim); margin-top: 1rem; line-height: 1.7;">
+        Before 2019, "Like" was the only option — no emotional data. Once LinkedIn added reaction types,
+        my pattern shifted: I lead with Praise and Empathy, rarely just "Like" anymore.
+        LinkedIn can read this shift. They know I respond to people's struggles and celebrate their wins.
+        <strong style="color: var(--text);">That's not a feature preference. That's a personality profile.</strong>
+      </p>
+    </div>
+
+    <div class="callout acid-callout">
+      <div class="callout-label">What this enables</div>
+      <p>
+        This is <strong>the algorithm</strong>. Your reaction types tell LinkedIn what emotions
+        drive your engagement. Your searches reveal your intent — job titles you're curious about,
+        people you're researching. Your comments and shares tell them what topics activate you.
+        All of this feeds the ranking model that controls what shows up in your feed every day.
+        It's also <strong>training data for AI</strong> — 12,000+ messages and 7,000+ comments
+        of natural human conversation, with emotional labels attached, owned by the same company
+        that owns a major stake in OpenAI.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============================== -->
+  <!-- SECTION: AD TARGETING -->
+  <!-- ============================== -->
+  <section class="section" id="targeting">
+    <div class="section-eyebrow">04 — What LinkedIn Thinks About You</div>
+    <h2>Your advertising dossier</h2>
+    <p class="section-intro">
+      This is where it gets real. LinkedIn maintains a massive profile of inferred
+      attributes about you — and sells access to it. Here's what mine looks like.
+    </p>
+
+    <div class="file-list">
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Inferences_about_you.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">4 rows</span>
+            <span class="file-tag red">Quiet but creepy</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Just four rows, but each one is a judgment LinkedIn has made about you:</p>
+            <div class="sample">• HR professional? NO
+• Inferred gender: FEMALE
+• Interested in a new job? TRUE
+• "Active contributor who influences public opinion" TRUE</div>
+            <p style="margin-top: 0.8rem">These are the categories advertisers can target. LinkedIn decided you "influence public opinion" based on "factors such as your experience, industry, and activity."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Ad_Targeting.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">1 row, ~400+ labels</span>
+            <span class="file-tag red">The big one</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>A single row with <span class="highlight">hundreds of semicolon-delimited values</span> crammed into each cell. Columns include: age range, gender, buyer groups, company names, company followers, company category, company size, degrees, schools, growth rate, fields of study, company connections, job functions, member gender, groups, industries, interests, locales, traits, locations, revenue, seniorities, skills, job titles, and years of experience.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Ads Clicked.csv &nbsp;/&nbsp; LAN Ads Engagement.csv</span>
+          <div class="file-meta">
+            <span class="file-rows">495 rows</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every ad you've clicked and your engagement with the LinkedIn Audience Network (ads on third-party sites that LinkedIn serves).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The Ad_Targeting file, visualized</div>
+      <p style="margin-bottom: 1rem">
+        These are the <strong>400+ interest labels</strong> LinkedIn assigned to me — a creative strategist.
+        <span style="color: var(--red);">Red tags</span> are the ones that have nothing to do with my actual work or interests.
+      </p>
+    </div>
+
+    <div class="tag-wall" id="tagWall">
+      <!-- Interests -->
+      <span class="tag">Content Marketing</span>
+      <span class="tag">Mobile Advertising</span>
+      <span class="tag">Online Media</span>
+      <span class="tag">Market Segmentation</span>
+      <span class="tag">Pay-Per-Click</span>
+      <span class="tag">Marketing Metrics</span>
+      <span class="tag">Strategic Management</span>
+      <span class="tag">Advertising Strategies</span>
+      <span class="tag weird">Health</span>
+      <span class="tag">Management Consulting</span>
+      <span class="tag">Sales and Retail</span>
+      <span class="tag">Market Research</span>
+      <span class="tag">Marketing and Advertising</span>
+      <span class="tag">Legal Services</span>
+      <span class="tag">Natural Language Processing</span>
+      <span class="tag">Direct Marketing</span>
+      <span class="tag weird">Computer Animation</span>
+      <span class="tag">Business Administration</span>
+      <span class="tag weird">Chatbots in Marketing</span>
+      <span class="tag weird">Society and Culture</span>
+      <span class="tag weird">Swarm Robotics</span>
+      <span class="tag">Hypertargeting</span>
+      <span class="tag">Business Consulting</span>
+      <span class="tag">Social Media Marketing</span>
+      <span class="tag weird">Salary and Wages</span>
+      <span class="tag">Search Engine Marketing</span>
+      <span class="tag weird">Robotics</span>
+      <span class="tag weird">Entertainment Electronics</span>
+      <span class="tag">Native Advertising</span>
+      <span class="tag">Email Marketing</span>
+      <span class="tag">Content Strategy</span>
+      <span class="tag">Social Media</span>
+      <span class="tag weird">Renewable Energy</span>
+      <span class="tag weird">Neuromarketing</span>
+      <span class="tag">Affinity Marketing</span>
+      <span class="tag">Retargeting</span>
+      <span class="tag">Business Analysis</span>
+      <span class="tag weird">Computer Graphics</span>
+      <span class="tag weird">Blogs and Blogging</span>
+      <span class="tag">Human-Computer Interaction</span>
+      <span class="tag">Marketing Technology</span>
+      <span class="tag weird">Business Travel</span>
+      <span class="tag weird">Design Software</span>
+      <span class="tag">Technology</span>
+      <span class="tag weird">Working Environments</span>
+      <span class="tag weird">Science and Environment</span>
+      <span class="tag weird">Design and Visual Arts</span>
+      <span class="tag weird">Drones</span>
+      <span class="tag weird">Special Effects</span>
+      <span class="tag weird">TV and Radio</span>
+      <span class="tag">IDEs</span>
+      <span class="tag">Marketing Communications</span>
+      <span class="tag weird">Journalism</span>
+      <span class="tag weird">Internet Infrastructure</span>
+      <span class="tag">Human Resources</span>
+      <span class="tag weird">Distributed Computing</span>
+      <span class="tag weird">Wearable Tech</span>
+      <span class="tag weird">News Media</span>
+      <span class="tag weird">Dark Social</span>
+      <span class="tag weird">Business Technology</span>
+      <span class="tag weird">Quantum Computing</span>
+      <span class="tag weird">Computer Networks</span>
+      <span class="tag">CRM</span>
+      <span class="tag weird">Careers and Employment</span>
+      <span class="tag">Engagement Marketing</span>
+      <span class="tag weird">Computer Programming</span>
+      <span class="tag">Brand Equity</span>
+      <span class="tag weird">Consumer Electronics</span>
+      <span class="tag weird">Chatbots</span>
+      <span class="tag">Paid Social</span>
+      <span class="tag">People Management</span>
+      <span class="tag">Sales Channels</span>
+      <span class="tag">Artificial Intelligence</span>
+      <span class="tag">Interactive Content</span>
+      <span class="tag">Marketing Automation</span>
+      <span class="tag">Copywriting</span>
+      <span class="tag weird">Arts and Entertainment</span>
+      <span class="tag">Programmatic Marketing</span>
+      <span class="tag weird">Video Games</span>
+      <span class="tag">Media Planning</span>
+      <span class="tag weird">Employee Benefits</span>
+      <span class="tag weird">Mobile Technology</span>
+      <span class="tag">Media Buying</span>
+      <span class="tag weird">Helpdesk and Customer Support</span>
+      <span class="tag">Out-of-Home Advertising</span>
+      <span class="tag weird">Audio-Visual Production</span>
+      <span class="tag">B2B Marketing</span>
+      <span class="tag">Customer Experience</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag weird">Disruptive Innovation</span>
+      <span class="tag weird">Computer Software</span>
+      <span class="tag weird">E-Commerce</span>
+      <span class="tag">Brand Personality</span>
+      <span class="tag">Marketing Performance</span>
+      <span class="tag">User Experience</span>
+      <span class="tag">Digital Marketing</span>
+      <span class="tag weird">Finance and Economy</span>
+      <span class="tag weird">Financial Technology</span>
+      <span class="tag weird">Workplace Wellness</span>
+      <span class="tag weird">Product Placement</span>
+      <span class="tag">SEO</span>
+      <span class="tag weird">Employee Engagement</span>
+      <span class="tag weird">Nanorobotics</span>
+      <span class="tag">Marketing Research</span>
+      <span class="tag">Brand Management</span>
+      <span class="tag weird">Politics and Law</span>
+      <span class="tag weird">Social Issues</span>
+      <span class="tag">Virtual Reality Marketing</span>
+      <span class="tag">Lead Generation</span>
+      <span class="tag weird">Augmented Reality</span>
+      <span class="tag weird">Baby Tech</span>
+      <span class="tag">Professional Networking</span>
+      <span class="tag">Brand Awareness</span>
+      <span class="tag weird">Energy</span>
+      <span class="tag">Deep Learning</span>
+      <span class="tag">Targeted Advertising</span>
+      <span class="tag">Influencer Marketing</span>
+      <span class="tag weird">Electronics</span>
+      <span class="tag weird">Commercial Sponsorship</span>
+      <span class="tag weird">Financial Management</span>
+      <span class="tag">Marketing Mix</span>
+      <span class="tag">Marketing Strategies</span>
+      <span class="tag weird">Swordmanship</span>
+      <span class="tag weird">Baby Showers</span>
+      <span class="tag weird">Active DoD Secret Clearance</span>
+      <span class="tag weird">Auto Racing</span>
+      <span class="tag weird">Trail Running</span>
+      <span class="tag weird">Weapons Training</span>
+      <span class="tag weird">Wedding Industry</span>
+      <span class="tag weird">Personal Finance</span>
+      <span class="tag weird">Travel and Tourism</span>
+      <span class="tag weird">Performing Arts</span>
+      <span class="tag weird">Liberal Arts</span>
+      <span class="tag weird">Healthcare Advertising</span>
+      <span class="tag weird">Government Contracting</span>
+      <span class="tag weird">Multi-level Marketing</span>
+      <span class="tag weird">Outdoor Recreation</span>
+      <span class="tag weird">Housing Policy</span>
+      <span class="tag weird">Electricity Markets</span>
+      <span class="tag weird">Pick and Pack</span>
+      <span class="tag weird">Movie Magic</span>
+      <span class="tag weird">Sound Art</span>
+      <span class="tag weird">Talk Radio</span>
+      <span class="tag weird">Catalogs</span>
+      <span class="tag weird">Flyers</span>
+      <span class="tag weird">Investing</span>
+      <span class="tag weird">Exterior Finishes</span>
+      <span class="tag weird">Medical Social Work</span>
+      <span class="tag weird">Adult Education</span>
+      <span class="tag weird">Durable Goods Sales</span>
+      <span class="tag weird">Vehicle Maintenance</span>
+      <span class="tag weird">On-board Diagnostics</span>
+      <span class="tag weird">Doing More with Less</span>
+      <span class="tag weird">eBook Publishing</span>
+      <span class="tag weird">Construction Management</span>
+      <span class="tag weird">Film Production</span>
+      <span class="tag weird">Magics</span>
+      <span class="tag weird">Show Calling</span>
+      <span class="tag weird">U.S. Department of Defense</span>
+    </div>
+    <button class="show-all-btn" id="showAllBtn" onclick="toggleTagWall()">Show all 400+ labels</button>
+
+    <div class="callout" style="margin-top: 2rem;">
+      <div class="callout-label">Swordmanship. Baby Showers. DoD Secret Clearance.</div>
+      <p>
+        I work in creative strategy and AI consulting. I have never expressed interest in
+        <strong>Swordmanship</strong>, <strong>Baby Showers</strong>,
+        <strong>Active DoD Secret Clearance</strong>, <strong>Nanorobotics</strong>,
+        <strong>Weapons Training</strong>, or <strong>Pick and Pack</strong>.
+        I didn't list these. <strong>LinkedIn inferred them.</strong>
+        And these labels aren't just for ads — they determine <strong>what opportunities reach you</strong>.
+        Job postings, recruiter outreach, and sponsored content are all filtered through this profile.
+        The inferences are wildly inaccurate, which means the entire system is built on
+        <strong>confident guesses</strong>. Every person who pays for a LinkedIn ad is bidding on
+        these labels. Every person scrolling LinkedIn is being sorted by them.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============================== -->
+  <!-- SECTION: BEHAVIOR -->
+  <!-- ============================== -->
+  <section class="section" id="behavior">
+    <div class="section-eyebrow">05 — Your Behavior Patterns</div>
+    <h2>The quiet files</h2>
+    <p class="section-intro">
+      These are the files most people would skip over. Login records, security events,
+      endorsements, learning activity, payment receipts. The long tail of tracking.
+    </p>
+
+    <div class="file-list">
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Logins.csv</span>
+          <div class="file-meta">
+            <span class="file-tag red">Every login</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>A timestamped record of every time you've logged in. Combined with IP data, this is a location history.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Security Challenges.csv</span>
+          <div class="file-meta"></div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Every security challenge event — CAPTCHAs, two-factor prompts, suspicious login attempts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="file-card">
+        <div class="file-header" onclick="toggleCard(this)">
+          <span class="file-name"><span class="file-icon">csv</span> Learning.csv <span class="new-badge">5 AI files</span></span>
+          <div class="file-meta">
+            <span class="file-rows">136 rows</span>
+          </div>
+          <span class="file-expand">+</span>
+        </div>
+        <div class="file-detail">
+          <div class="file-detail-inner">
+            <p>Your LinkedIn Learning activity — every course viewed or completed. But notably, the export now includes <span class="highlight">four additional files</span> for AI features: <strong>LearningCoachMessages.csv</strong>, <strong>learning_coach_messages.csv</strong> (yes, both exist), <strong>learning_role_play_messages.csv</strong>, and <strong>guide_messages.csv</strong>. These track your conversations with LinkedIn's AI coaching tools.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout acid-callout">
+      <div class="callout-label">What this enables</div>
+      <p>
+        Login timestamps + IP addresses = a <strong>location history</strong> LinkedIn never
+        explicitly asked you to share. The AI coaching files are especially notable:
+        LinkedIn now stores your conversations with their AI tools, which means
+        <strong>your career anxieties, skill gaps, and professional insecurities</strong> — the things
+        you'd only share with a "coach" — are now rows in a database.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============================== -->
+  <!-- SECTION: THE MESS -->
+  <!-- ============================== -->
+  <section class="section" id="messy">
+    <div class="section-eyebrow">06 — The Mess Behind the Curtain</div>
+    <h2>Four date formats, zero consistency</h2>
+    <p class="section-intro">
+      The export itself tells a story: this data was clearly assembled by
+      different teams with zero coordination. Here's what we mean.
+    </p>
+
+    <h3 style="font-family: var(--display); font-size: 14px; letter-spacing: 0.05em; margin-bottom: 1rem; color: var(--text-muted);">Date formats across files</h3>
+    <div class="format-grid">
+      <div class="format-item">
+        <div class="format-label">Connections.csv</div>
+        <div class="format-value" style="color: var(--acid)">08 Feb 2026</div>
+      </div>
+      <div class="format-item">
+        <div class="format-label">Shares.csv</div>
+        <div class="format-value" style="color: var(--amber)">2026-02-09 01:21:47</div>
+      </div>
+      <div class="format-item">
+        <div class="format-label">SearchQueries.csv</div>
+        <div class="format-value" style="color: var(--red)">2024/02/01 15:02:55 UTC</div>
+      </div>
+      <div class="format-item">
+        <div class="format-label">Invitations.csv</div>
+        <div class="format-value" style="color: var(--blue)">1/29/26, 2:37 PM</div>
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--display); font-size: 14px; letter-spacing: 0.05em; margin: 2rem 0 1rem; color: var(--text-muted);">File naming conventions (or lack thereof)</h3>
+    <div class="format-grid">
+      <div class="format-item">
+        <div class="format-label">Snake_Case</div>
+        <div class="format-value">Ad_Targeting.csv</div>
+      </div>
+      <div class="format-item">
+        <div class="format-label">Spaces</div>
+        <div class="format-value">Ads Clicked.csv</div>
+      </div>
+      <div class="format-item">
+        <div class="format-label">camelCase</div>
+        <div class="format-value">SearchQueries.csv</div>
+      </div>
+      <div class="format-item">
+        <div class="format-label">lowercase</div>
+        <div class="format-value">messages.csv</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 2rem;">
+      <div class="callout-label">LinkedIn gives you two export options. One hides the worst stuff.</div>
+      <p>
+        When you request your data, LinkedIn offers a <strong>"Basic"</strong> export (ready in minutes)
+        and a <strong>"Complete"</strong> export (takes ~24 hours). The Basic version contains about
+        <strong>half the files</strong>. Guess which half is missing? Your search history.
+        Your reactions. Your login records. The inferences they've made about you. The ad targeting
+        labels. Your comments. Your shares. All the AI coaching messages.
+        <strong>Everything on this page that made you uncomfortable is only in the Complete archive.</strong>
+        If you've downloaded your data before and thought "this doesn't seem so bad" —
+        you probably got the Basic.
+      </p>
+    </div>
+
+  </section>
+
+  <hr class="divider">
+
+  <!-- ============================== -->
+  <!-- SECTION: WHY NOW -->
+  <!-- ============================== -->
+  <section class="section" id="context">
+    <div class="section-eyebrow">07 — Why This Matters Right Now</div>
+    <h2>This isn't theoretical</h2>
+    <p class="section-intro">
+      Three things happened in the last few months that make
+      this archive more than an interesting exercise.
+    </p>
+
+    <div class="news-cards">
+
+      <!-- CARD 1: Data Breach -->
+      <div class="news-card">
+        <div class="news-card-header">
+          <h3>4.3 billion records were found in an exposed database</h3>
+          <span class="news-card-date">Nov 2025</span>
+        </div>
+        <div class="news-card-body">
+          <div class="news-card-number" style="color: var(--red)">4,300,000,000</div>
+          <p>
+            Cybersecurity researchers discovered an unsecured MongoDB database containing
+            <strong>16 terabytes of professional records</strong> scraped from LinkedIn profiles.
+            Names, emails, phone numbers, job roles, work history, education, skills, photos.
+            The data sat exposed on the open internet until researchers flagged it.
+          </p>
+          <div class="news-card-receipt">
+            <strong>The connection to your archive:</strong> The exposed data matches the exact
+            fields in your LinkedIn export — Profile.csv, Positions.csv, Skills.csv, Education.csv,
+            Email Addresses.csv. The difference is that your archive is one person. That breach
+            was nearly everyone.
+          </div>
+        </div>
+        <div class="news-card-sources">
+          <a href="https://cybernews.com/security/database-exposes-billions-records-linkedin-data/" target="_blank" rel="noopener">Cybernews</a>
+          <a href="https://www.esecurityplanet.com/threats/4-3-billion-records-exposed-in-massive-lead-generation-data-leak/" target="_blank" rel="noopener">eSecurity Planet</a>
+          <a href="https://www.techrepublic.com/article/news-4-3-billion-linkedin-records-exposed/" target="_blank" rel="noopener">TechRepublic</a>
+        </div>
+      </div>
+
+      <!-- CARD 2: AI Training -->
+      <div class="news-card">
+        <div class="news-card-header">
+          <h3>LinkedIn started using your data to train AI — and opted you in by default</h3>
+          <span class="news-card-date">Nov 2025</span>
+        </div>
+        <div class="news-card-body">
+          <p>
+            As of November 2025, LinkedIn updated its privacy policy to
+            <strong>use member data to train generative AI models by default</strong>.
+            Your posts, comments, reactions, profile information, and feed interactions
+            now feed into Microsoft's AI ecosystem. You can opt out — but anything
+            collected before your opt-out date is already in the training data.
+            And most users were never notified.
+          </p>
+          <div class="news-card-receipt">
+            <strong>The connection to your archive:</strong> Those 12,468 messages, 7,420 comments,
+            4,707 posts, and 2,575 emotionally-labeled reactions? That's not just stored data.
+            It's <strong>training data</strong> — text with sentiment labels attached, exactly what
+            AI models need to learn how humans communicate. LinkedIn owns it. Microsoft
+            builds the models.
+          </div>
+        </div>
+        <div class="news-card-sources">
+          <a href="https://www.malwarebytes.com/blog/news/2025/09/linkedin-will-use-your-data-to-train-its-ai-unless-you-opt-out-now" target="_blank" rel="noopener">Malwarebytes</a>
+          <a href="https://proton.me/blog/linkedin-ai-training" target="_blank" rel="noopener">Proton</a>
+          <a href="https://cybernews.com/ai-news/linkedin-data-ai-training-optout/" target="_blank" rel="noopener">Cybernews</a>
+        </div>
+      </div>
+
+      <!-- CARD 3: Gender Bias -->
+      <div class="news-card">
+        <div class="news-card-header">
+          <h3>Women tested LinkedIn for gender bias. LinkedIn said it doesn't use gender. Their own export says otherwise.</h3>
+          <span class="news-card-date">Nov–Dec 2025</span>
+        </div>
+        <div class="news-card-body">
+          <p>
+            In the <strong>#WearThePants</strong> experiment, women changed their LinkedIn gender
+            settings to male and saw dramatic increases in reach — <strong>200% to 818% more
+            impressions</strong>. LinkedIn's head of responsible AI stated that their systems
+            "do not use demographic information (such as age, race, or gender) as a signal
+            to determine the visibility of content."
+          </p>
+          <div class="news-card-receipt">
+            <strong>The connection to your archive:</strong> Open Inferences_about_you.csv. Right
+            there in row 3: <strong>"Inferred gender: FEMALE."</strong> LinkedIn collects it.
+            They categorize it. They make it available to advertisers. They say the algorithm
+            doesn't use it. But they definitely have it — and anyone who downloads their
+            Complete archive can see that for themselves.
+          </div>
+        </div>
+        <div class="news-card-sources">
+          <a href="https://techcrunch.com/2025/12/12/ok-whats-going-on-with-linkedins-algo/" target="_blank" rel="noopener">TechCrunch</a>
+          <a href="https://fortune.com/2025/11/21/linkedin-content-bias-women-men-feed/" target="_blank" rel="noopener">Fortune</a>
+          <a href="https://www.washingtonpost.com/business/2025/12/29/linkedin-women-gender-bias/" target="_blank" rel="noopener">Washington Post</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout" style="margin-top: 2.5rem; border-left-color: var(--text);">
+      <div class="callout-label" style="color: var(--text);">One last thing</div>
+      <p>
+        This is <strong>one platform</strong>.
+      </p>
+      <p style="margin-top: 0.8rem;">
+        My LinkedIn Profile.csv contains my Twitter handle, my personal website,
+        and my email address. My Connections.csv includes emails for 116 people in my
+        network. My imported contacts have personal phone numbers and emails going back to 2007.
+        These are <strong>cross-platform identifiers</strong> — the exact keys a data broker
+        needs to link a LinkedIn profile to Facebook activity, Google searches,
+        Instagram interests, Amazon purchases, and location history.
+      </p>
+      <p style="margin-top: 0.8rem;">
+        Every platform has an archive like this one. Most people have never downloaded any of them.
+        Each archive alone is revealing. <strong>Linked together, they're a complete portrait
+        of who you are, what you want, what you fear, and what you'll do next.</strong>
+      </p>
+      <p style="margin-top: 0.8rem;">
+        LinkedIn is just the one that's supposed to be "professional."
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>See your own file</h2>
+  <p>
+    LinkedIn is required to give you a copy of your data.
+    But you have to ask for the right one.
+  </p>
+  <a href="https://www.linkedin.com/mypreferences/d/download-my-data" target="_blank" rel="noopener" class="cta-button">
+    Download Your Archive
+  </a>
+  <div class="cta-steps">
+    <div class="cta-step">
+      <div class="cta-step-num">1</div>
+      <p>Go to Settings &rarr; Data Privacy &rarr; Get a copy of your data</p>
+    </div>
+    <div class="cta-step">
+      <div class="cta-step-num">2</div>
+      <p><strong>Select "Download larger data archive"</strong> — not the default. The default "Basic" export hides the most revealing files (search history, ad targeting, reactions, logins, inferences).</p>
+    </div>
+    <div class="cta-step">
+      <div class="cta-step-num">3</div>
+      <p>Wait ~24 hours. The Complete archive takes longer because there's a lot more in it.</p>
+    </div>
+    <div class="cta-step">
+      <div class="cta-step-num">4</div>
+      <p>Unzip it. Open the CSVs. See what they know.</p>
+    </div>
+    <div class="cta-step">
+      <div class="cta-step-num">5</div>
+      <p>While you're there: Settings &rarr; Data Privacy &rarr; <strong>Data for Generative AI Improvement</strong> &rarr; toggle it off. Anything before your opt-out date is already in the training data, but you can stop the bleeding.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>This page is based on my real LinkedIn data export from February 2026. File sizes, ad targeting labels, and structural details are from my actual archive. Private content (messages, connections, searches) has been generalized.</p>
+  <p style="margin-top: 0.5rem;">Built by <a href="https://www.linkedin.com/in/jennyqueenofswords" target="_blank" rel="noopener">Jenny Nicholson</a> — who read her own file and thought you should read yours.</p>
+</footer>
+
+<script>
+// Toggle file cards
+function toggleCard(header) {
+  const card = header.closest('.file-card');
+  card.classList.toggle('open');
+}
+
+// Toggle tag wall
+function toggleTagWall() {
+  const wall = document.getElementById('tagWall');
+  const btn = document.getElementById('showAllBtn');
+  wall.classList.toggle('expanded');
+  btn.textContent = wall.classList.contains('expanded') ? 'Show less' : 'Show all 400+ labels';
+}
+
+// Nav visibility on scroll
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const st = window.scrollY;
+  if (st > window.innerHeight * 0.8) {
+    nav.classList.add('visible');
+  } else {
+    nav.classList.remove('visible');
+  }
+  lastScroll = st;
+});
+
+// Active nav link
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observerNav = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      const id = entry.target.getAttribute('id');
+      const active = document.querySelector(`.nav-links a[href="#${id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(s => observerNav.observe(s));
+
+// Scroll-triggered section reveals
+const observerReveal = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    }
+  });
+}, { threshold: 0.1 });
+
+sections.forEach(s => observerReveal.observe(s));
+
+// Counter animation
+function animateCounters() {
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const target = parseInt(counter.dataset.target);
+    const duration = 2000;
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(target * eased);
+      counter.textContent = current.toLocaleString();
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+// Trigger counters when stats bar is visible
+const statsBar = document.querySelector('.stats-bar');
+let countersDone = false;
+const observerStats = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !countersDone) {
+    countersDone = true;
+    animateCounters();
+  }
+}, { threshold: 0.5 });
+observerStats.observe(statsBar);
+
+// Animate emotion bars when visible
+const emotionProfile = document.getElementById('emotionProfile');
+let emotionsDone = false;
+const observerEmotions = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !emotionsDone) {
+    emotionsDone = true;
+    document.querySelectorAll('.emotion-bar-fill').forEach((bar, i) => {
+      setTimeout(() => {
+        bar.style.width = bar.dataset.width + '%';
+      }, i * 100);
+    });
+  }
+}, { threshold: 0.3 });
+observerEmotions.observe(emotionProfile);
+
+// Animate network bars when visible
+const networkProfile = document.getElementById('networkProfile');
+let networkDone = false;
+const observerNetwork = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !networkDone) {
+    networkDone = true;
+    document.querySelectorAll('.network-bar').forEach((bar, i) => {
+      setTimeout(() => {
+        bar.style.height = bar.dataset.h + '%';
+      }, i * 60);
+    });
+  }
+}, { threshold: 0.2 });
+observerNetwork.observe(networkProfile);
+</script>
+
+</body>
+</html>
